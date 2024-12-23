@@ -1,38 +1,38 @@
-Low Complexity Prompts:
+Low Complexity AI Benchmarking Prompts
 
-    "Describe your favorite season."
-    "What is your favorite color?"
-    "Write a note to your future self."
-    "List five things you love about nature."
-    "Write a paragraph about a relaxing day."
-    "Name your favorite hobby and why you enjoy it."
-    "Describe a pet or animal you like."
-    "Explain why reading is fun."
-    "Write a story about a sunny day."
-    "Share your favorite memory."
+    Write a single sentence about a cat
+    Generate a three-word description of happiness
+    List five common household objects
+    Describe a simple color
+    Create a basic greeting
+    Explain what a tree is in one line
+    Name three animals
+    Write a two-line poem
+    Describe a basic emotion
+    Generate a short weather report
 
-Medium Complexity Prompts:
+Medium Complexity AI Benchmarking Prompts
 
-    "Explain how photosynthesis works in plants."
-    "Discuss the advantages of renewable energy sources."
-    "Describe the role of water in human life."
-    "Explain the impact of the internet on education."
-    "Analyze the importance of teamwork in the workplace."
-    "Discuss how climate change affects wildlife."
-    "Explain the basics of blockchain technology."
-    "Discuss the role of social media in communication today."
-    "Describe the influence of ancient Greek philosophy on modern thought."
-    "Write about the challenges of balancing work and personal life."
+    Explain the basic principles of machine learning
+    Describe how neural networks process information
+    Compare traditional programming with AI algorithms
+    Discuss the ethical implications of AI decision-making
+    Analyze the role of data quality in AI training
+    Explain the difference between supervised and unsupervised learning
+    Describe the challenges of natural language processing
+    Discuss the potential of AI in healthcare
+    Compare different AI model architectures
+    Explain the concept of transfer learning
+    Analyze the computational complexity of deep learning models
+    Describe the process of feature extraction
+    Discuss bias and fairness in AI systems
+    Explain the basics of reinforcement learning
+    Analyze the scalability of AI algorithms
 
-High Complexity Prompts:
+High Complexity AI Benchmarking Prompts
 
-    "Evaluate the effects of international trade agreements on emerging economies."
-    "Analyze the ethical implications of gene editing technologies like CRISPR."
-    "Discuss the interplay of artificial intelligence and privacy in the digital age."
-    "Compare and contrast the political and economic strategies of major global powers in tackling climate change."
-    "Assess the societal implications of automation on labor markets in developing countries."
-    "Critically analyze the role of multilateral organizations in resolving geopolitical conflicts."
-    "Discuss the strategic importance of rare earth minerals in modern technology."
-    "Evaluate the potential impact of space exploration on global economies."
-    "Analyze the philosophical implications of artificial consciousness on humanity."
-    "Discuss the technological, ethical, and political dimensions of creating human-animal hybrids for medical research."
+    Develop a comprehensive framework for evaluating multi-modal AI systems across different cognitive domains
+    Analyze the long-term societal and economic implications of advanced artificial general intelligence
+    Create a detailed research proposal investigating quantum machine learning's potential in solving complex optimization problems
+    Develop a theoretical model for self-improving AI systems with ethical constraints
+    Conduct a comprehensive comparative analysis of AI performance across different computational paradigms
