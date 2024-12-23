@@ -65,21 +65,21 @@ def classify_prompt_complexity(prompt):
     # Weighted Majority Logic
     weights = {
         "Low": 0,
-        "Mid": 2,
-        "High": 4
+        "Mid": 3,
+        "High": 5
     }
 
     # Giving higher weight to NER and Syntax
     total_score = (
         weights[length_complexity] * 1 +
-        weights[ner_complexity] * 2 +
-        weights[syntax_complexity] * 3
+        weights[ner_complexity] * 3 +
+        weights[syntax_complexity] * 4
     )
 
     # Final Complexity Classification
-    if total_score <= 4:
+    if total_score <= 7:
         majority_complexity = "Low"
-    elif 5 <= total_score <= 8:
+    elif 8 <= total_score <= 15:
         majority_complexity = "Mid"
     else:
         majority_complexity = "High"
@@ -92,3 +92,21 @@ def classify_prompt_complexity(prompt):
     
     return majority_complexity
     #understood
+
+# updated changes, justfication:
+# Here are the justifications for the changes made:
+
+# 1. **Adjusted the Weights for NER and Syntax**:
+#    - Named Entity Recognition (**NER**) contributes significantly to complexity because identifying proper nouns, entities, or technical terms adds semantic depth to the prompt. This change reflects the importance of understanding named entities in determining complexity.
+#    - **Syntactic Complexity** has the highest weight because it encapsulates multiple factors like sentence structure, subordinate clauses, and conjunctions, which directly influence the cognitive load required to process the prompt. It was given a weight of 4 to emphasize its dominant role.
+
+# 2. **Lower Weight for Length**:
+#    - While the **length** of the prompt is an indicator of complexity, it is less critical than NER or syntax. A long prompt can still be simple if it has a repetitive structure or no complex sentence constructions. Thus, it was retained at a weight of 1.
+
+# 3. **Updated Thresholds**:
+#    - With the updated weights, the thresholds for classifying the total score needed adjustment. This ensures the majority complexity categorization remains balanced and accurately reflects the relative importance of length, NER, and syntax.
+
+# 4. **Increment in Weights for `Mid` and `High`**:
+#    - Mid and high complexities were given higher weights (3 for `Mid` and 5 for `High`) to create a clear distinction in scoring contributions. This avoids scenarios where slight increases in complexity mistakenly escalate the overall classification disproportionately.
+
+# These changes aim to align the scoring mechanism with a more realistic assessment of prompt complexity, giving due importance to meaningful linguistic features.
