@@ -30,8 +30,8 @@ echo "Complexity: $COMPLEXITY"
 echo "Prompt: $PROMPT"
 
 run_model(){
-    local $PROMPT = "$1"
-    local COMPLEXITY = "${2:-Low}"
+    #local $PROMPT = "$1"
+    #local COMPLEXITY = "${2:-Low}"
 
     case "$COMPLEXITY" in
         "Low")
@@ -77,8 +77,9 @@ check_relevance() {
     while true; do
         python textSimilarity.py
         RELEVANT=$(grep -o '"relevant": *"[^"]*"' data/test.txt | sed 's/"relevant": "//; s/"$//')
+        echo $RELEVANT
 
-        if [[ "$RELEVANT" == "true" ]]; then
+        if [[ "$RELEVANT" == "True" ]]; then
             echo "The response generated is relevant."
             break
         else
@@ -106,7 +107,7 @@ check_relevance() {
     done
 }
 
-run_model "$PROMPT" "$COMPLEXITY"
+run_model 
 check_relevance
 
 end_time=$(date +%s.%3N)
