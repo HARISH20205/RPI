@@ -22,7 +22,7 @@ read -p "Enter the prompt: " PROMPT
 start_time=$(date +%s.%3N)
 echo "Start time: $start_time"
 
-python3 main.py "$PROMPT"
+python main.py "$PROMPT"
 
 COMPLEXITY=$(grep -o '"complexity": *"[^"]*"' data/test.txt | sed 's/"complexity": "//; s/"$//')
 
@@ -55,4 +55,8 @@ time_diff_ms=$(awk "BEGIN {printf \"%.0f\", ($end_time - $start_time) * 1000}")
 echo "Time taken: $time_diff_ms ms"
 
 python textSimilarity.py
+
+RELEVANT=$(grep -o '"relevant": *"[^"]*"' data/test.txt | sed 's/"relevant": "//; s/"$//')
+
+
 echo "Done!!"
