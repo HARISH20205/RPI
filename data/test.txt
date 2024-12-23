@@ -1,1 +1,1 @@
-{"prompt": "what is AI?", "complexity": "Low"}
+{"prompt": "Compare traditional programming with AI algorithms", "complexity": "High"}
