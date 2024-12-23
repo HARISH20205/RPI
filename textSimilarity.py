@@ -127,7 +127,7 @@ def main():
     print("Relevance Score:", relevance_result['relevance_score'])
     print("Is Relevant:", relevance_result['is_relevant'])
     
-    data["relevant"] = relevance_result['is_relevant']
+    data["relevant"] = str(relevance_result['is_relevant'])
     
     with open("data/test.txt", "w") as file:
         json.dump(data, file, indent=2)
