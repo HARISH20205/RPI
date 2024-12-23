@@ -28,6 +28,28 @@ Medium Complexity AI Benchmarking Prompts
     Discuss bias and fairness in AI systems
     Explain the basics of reinforcement learning
     Analyze the scalability of AI algorithms
+    What is water?
+    Explain "hot" and "cold"
+    Describe a tree
+    What makes you happy?
+    Name something round
+    What is sleep?
+    Describe a cloud
+    What is music?
+    Explain "soft"
+    What is a friend?
+    Translate "hello"
+    Correct simple spelling
+    Identify noun/verb
+    Match synonyms
+    Complete "The cat is ___"
+    Recognize palindromes
+    Sort alphabetically
+    Count word syllables
+    Identify rhyming words
+    Create a simple acronym
+
+
 
 High Complexity AI Benchmarking Prompts
 
