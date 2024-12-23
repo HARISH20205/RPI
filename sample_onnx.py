@@ -3,7 +3,7 @@ import numpy as np
 import torch
 
 # Load the ONNX model
-model_path = "gemma2_2b.onnx"
+model_path = "model.onnx"
 session = ort.InferenceSession(model_path, providers=["CPUExecutionProvider"])
 
 # Tokenizer placeholder (replace with actual tokenizer)

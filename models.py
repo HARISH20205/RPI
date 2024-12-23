@@ -22,3 +22,18 @@
 #     dynamic_axes={"input_ids": {0: "batch_size", 1: "sequence_length"}}, 
 #     opset_version=12 
 # )
+
+from transformers import AutoModel, AutoTokenizer
+from optimum.onnxruntime import ORTModelForCausalLM
+
+# Load the original model
+model = AutoModel.from_pretrained("google/gemma-2-2b-it")
+tokenizer = AutoTokenizer.from_pretrained("google/gemma-2-2b-it")
+
+# Export to ONNX
+ort_model = ORTModelForCausalLM.from_pretrained(
+    "google/gemma-2b-it", 
+    export=True, 
+    from_transformers=True
+)
+ort_model.save_pretrained("./gemma_2b_onnx")

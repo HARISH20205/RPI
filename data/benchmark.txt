@@ -1,23 +1,38 @@
-low_complexity_prompt = "Write a short story."
-# Expected Output: Low Complexity
-# Characteristics:
-# - Short length
-# - No named entities
-# - Simple sentence structure
+Low Complexity Prompts:
 
-medium_complexity_prompt = "Describe how artificial intelligence impacts modern technology and society."
-# Expected Output: Mid Complexity
-# Characteristics:
-# - Moderate length
-# - Some technical terms
-# - Multiple clauses
-# - Introduces complexity through subject matter
+    "Describe your favorite season."
+    "What is your favorite color?"
+    "Write a note to your future self."
+    "List five things you love about nature."
+    "Write a paragraph about a relaxing day."
+    "Name your favorite hobby and why you enjoy it."
+    "Describe a pet or animal you like."
+    "Explain why reading is fun."
+    "Write a story about a sunny day."
+    "Share your favorite memory."
 
-high_complexity_prompt = "Analyze the geopolitical implications of quantum computing advancements in the United States, China, and European Union, considering technological, economic, and strategic dimensions of this emerging field."
-# Expected Output: High Complexity
-# Characteristics:
-# - Long sentence
-# - Multiple named entities (United States, China, European Union)
-# - Complex syntactic structure
-# - Multiple subordinate clauses
-# - Technical and specialized vocabulary
+Medium Complexity Prompts:
+
+    "Explain how photosynthesis works in plants."
+    "Discuss the advantages of renewable energy sources."
+    "Describe the role of water in human life."
+    "Explain the impact of the internet on education."
+    "Analyze the importance of teamwork in the workplace."
+    "Discuss how climate change affects wildlife."
+    "Explain the basics of blockchain technology."
+    "Discuss the role of social media in communication today."
+    "Describe the influence of ancient Greek philosophy on modern thought."
+    "Write about the challenges of balancing work and personal life."
+
+High Complexity Prompts:
+
+    "Evaluate the effects of international trade agreements on emerging economies."
+    "Analyze the ethical implications of gene editing technologies like CRISPR."
+    "Discuss the interplay of artificial intelligence and privacy in the digital age."
+    "Compare and contrast the political and economic strategies of major global powers in tackling climate change."
+    "Assess the societal implications of automation on labor markets in developing countries."
+    "Critically analyze the role of multilateral organizations in resolving geopolitical conflicts."
+    "Discuss the strategic importance of rare earth minerals in modern technology."
+    "Evaluate the potential impact of space exploration on global economies."
+    "Analyze the philosophical implications of artificial consciousness on humanity."
+    "Discuss the technological, ethical, and political dimensions of creating human-animal hybrids for medical research."
