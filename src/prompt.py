@@ -1,18 +1,17 @@
 import nltk
 from nltk import word_tokenize, pos_tag, ne_chunk, sent_tokenize
 
-#took from perplexity, if anyone can just comment each meaning, and say how its different from our previous thing
 def calculate_ttr(prompt):
     tokens = word_tokenize(prompt.lower())
     unique_tokens = set(tokens)
-    return len(unique_tokens) / len(tokens)
+    return len(unique_tokens) / len(tokens) #basic unique/number, as i this converts how it can be used
 
 def advanced_tokenization(prompt):
     word_tokens = word_tokenize(prompt)
     pos_tags = pos_tag(word_tokens)
     
-    noun_count = sum(1 for _, tag in pos_tags if tag.startswith('NN'))
-    verb_complexity = sum(1 for _, tag in pos_tags if tag.startswith('VB'))
+    noun_count = sum(1 for _, tag in pos_tags if tag.startswith('NN')) #count nouns, nn->noun singular
+    verb_complexity = sum(1 for _, tag in pos_tags if tag.startswith('VB')) #count verbs, vb->verbs, base form, considers all types of verbs
     
     return noun_count, verb_complexity
 
@@ -20,13 +19,12 @@ def enhanced_syntax_complexity(prompt):
     tokens = word_tokenize(prompt)
     pos_tags = pos_tag(tokens)
     
-    subordinate_clauses = sum(1 for _, tag in pos_tags if tag in {'IN', 'WDT', 'WRB'})
-    complex_noun_phrases = sum(1 for _, tag in pos_tags if tag in {'NNP', 'NNPS'})
+    subordinate_clauses = sum(1 for _, tag in pos_tags if tag in {'IN', 'WDT', 'WRB'}) #IN->conjuction, WDT->wh-determiner, wh-adverb
+    complex_noun_phrases = sum(1 for _, tag in pos_tags if tag in {'NNP', 'NNPS'}) #nnp->proper nouns singular(london), nnps->proper nouns plural(united states, watha intha s)
     
     return subordinate_clauses + complex_noun_phrases
 
 def classify_prompt_complexity(prompt):
-    # Length Classification
     length = len(prompt.split())
     if length <= 5:
         length_complexity = "Low"
@@ -35,12 +33,10 @@ def classify_prompt_complexity(prompt):
     else:
         length_complexity = "High"
 
-    # NER Classification using NLTK
     tokens = word_tokenize(prompt)
     pos_tags = pos_tag(tokens)
     ner_tree = ne_chunk(pos_tags)
 
-    # Count named entities
     entity_count = sum(1 for chunk in ner_tree if hasattr(chunk, 'label'))
 
     if entity_count == 0:
@@ -50,9 +46,8 @@ def classify_prompt_complexity(prompt):
     else:
         ner_complexity = "High"
 
-    # Syntactic Complexity Calculation
-    conj_count = sum(1 for word, tag in pos_tags if tag in {'CC'})
-    sub_clause_count = sum(1 for word, tag in pos_tags if tag in {'IN', 'TO'})
+    conj_count = sum(1 for word, tag in pos_tags if tag in {'CC', 'IN'}) #CC->CONJUNCTIONs(and, but), in->subordinating conjunctions(coz, although)
+    sub_clause_count = sum(1 for word, tag in pos_tags if tag in {'WRB', 'WDT', 'WP', 'IN'}) #wdt->wh-determiner, wrb->wh-adverb, wp->wh-pronoun, in->as above
 
     sentences = sent_tokenize(prompt)
     num_sentences = len(sentences)
@@ -69,12 +64,10 @@ def classify_prompt_complexity(prompt):
     else:
         syntax_complexity = "High"
 
-    # New Metrics
     ttr = calculate_ttr(prompt)
     noun_count, verb_complexity = advanced_tokenization(prompt)
     syntax_score = enhanced_syntax_complexity(prompt)
 
-    # Weighted Majority Logic
     weights = {
         "Low": 0,
         "Mid": 2,
@@ -87,7 +80,6 @@ def classify_prompt_complexity(prompt):
         weights[syntax_complexity] * 3
     )
 
-    # Incorporate new metrics
     if ttr > 0.7:
         total_score += 2
     if noun_count > 5:
@@ -95,7 +87,6 @@ def classify_prompt_complexity(prompt):
     if syntax_score > 3:
         total_score += 2
 
-    # Final Complexity Classification
     if total_score <= 4:
         majority_complexity = "Low"
     elif 5 <= total_score <= 8:
