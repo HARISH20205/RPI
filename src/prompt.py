@@ -1,22 +1,31 @@
 import nltk
 from nltk import word_tokenize, pos_tag, ne_chunk, sent_tokenize
 
-#can we not load the models up here, as i think everytime the function is called it will download the models - should verify
-# nltk.download('punkt') #tokenize the given para into sentences
-# nltk.download('averaged_perceptron_tagger') #adds tags to each word in a sentence, for ex ['NLP', 'noun']
-# nltk.download('maxent_ne_chunker') #ner of the tags or words in the given sentence
-# nltk.download('words') #contains the english word corpus, which we can load here, as of our need
-# nltk.download('punkt_tab')
-# nltk.download('averaged_perceptron_tagger_eng')
-# nltk.download('maxent_ne_chunker_tab')
+#took from perplexity, if anyone can just comment each meaning, and say how its different from our previous thing
+def calculate_ttr(prompt):
+    tokens = word_tokenize(prompt.lower())
+    unique_tokens = set(tokens)
+    return len(unique_tokens) / len(tokens)
+
+def advanced_tokenization(prompt):
+    word_tokens = word_tokenize(prompt)
+    pos_tags = pos_tag(word_tokens)
+    
+    noun_count = sum(1 for _, tag in pos_tags if tag.startswith('NN'))
+    verb_complexity = sum(1 for _, tag in pos_tags if tag.startswith('VB'))
+    
+    return noun_count, verb_complexity
+
+def enhanced_syntax_complexity(prompt):
+    tokens = word_tokenize(prompt)
+    pos_tags = pos_tag(tokens)
+    
+    subordinate_clauses = sum(1 for _, tag in pos_tags if tag in {'IN', 'WDT', 'WRB'})
+    complex_noun_phrases = sum(1 for _, tag in pos_tags if tag in {'NNP', 'NNPS'})
+    
+    return subordinate_clauses + complex_noun_phrases
+
 def classify_prompt_complexity(prompt):
-    #nltk.download('punkt') #tokenize the given para into sentences
-    #nltk.download('averaged_perceptron_tagger') #adds tags to each word in a sentence, for ex ['NLP', 'noun']
-    #nltk.download('maxent_ne_chunker') #ner of the tags or words in the given sentence
-    #nltk.download('words') #contains the english word corpus, which we can load here, as of our need
-    #nltk.download('punkt_tab')
-    #nltk.download('averaged_perceptron_tagger_eng')
-    #nltk.download('maxent_ne_chunker_tab')
     # Length Classification
     length = len(prompt.split())
     if length <= 5:
@@ -31,7 +40,7 @@ def classify_prompt_complexity(prompt):
     pos_tags = pos_tag(tokens)
     ner_tree = ne_chunk(pos_tags)
 
-    # Count named entities (chunked as proper nouns or specific entities)
+    # Count named entities
     entity_count = sum(1 for chunk in ner_tree if hasattr(chunk, 'label'))
 
     if entity_count == 0:
@@ -42,14 +51,13 @@ def classify_prompt_complexity(prompt):
         ner_complexity = "High"
 
     # Syntactic Complexity Calculation
-    conj_count = sum(1 for word, tag in pos_tags if tag in {'CC'})  # Conjunctions
-    sub_clause_count = sum(1 for word, tag in pos_tags if tag in {'IN', 'TO'})  # Subordinate clauses
+    conj_count = sum(1 for word, tag in pos_tags if tag in {'CC'})
+    sub_clause_count = sum(1 for word, tag in pos_tags if tag in {'IN', 'TO'})
 
     sentences = sent_tokenize(prompt)
     num_sentences = len(sentences)
     avg_sentence_length = len(tokens) / num_sentences if num_sentences > 0 else 0
 
-    # Calculating the complexity score
     complexity_score = (
         conj_count + sub_clause_count + (1 if avg_sentence_length > 12 else 0)
     )
@@ -61,6 +69,11 @@ def classify_prompt_complexity(prompt):
     else:
         syntax_complexity = "High"
 
+    # New Metrics
+    ttr = calculate_ttr(prompt)
+    noun_count, verb_complexity = advanced_tokenization(prompt)
+    syntax_score = enhanced_syntax_complexity(prompt)
+
     # Weighted Majority Logic
     weights = {
         "Low": 0,
@@ -68,12 +81,19 @@ def classify_prompt_complexity(prompt):
         "High": 4
     }
 
-    # Giving higher weight to NER and Syntax
     total_score = (
         weights[length_complexity] * 1 +
         weights[ner_complexity] * 2 +
         weights[syntax_complexity] * 3
     )
+
+    # Incorporate new metrics
+    if ttr > 0.7:
+        total_score += 2
+    if noun_count > 5:
+        total_score += 1
+    if syntax_score > 3:
+        total_score += 2
 
     # Final Complexity Classification
     if total_score <= 4:
@@ -83,11 +103,8 @@ def classify_prompt_complexity(prompt):
     else:
         majority_complexity = "High"
 
-    #print(f"Prompt : {prompt}")
     print(f"Length: {length_complexity} | NER: {ner_complexity} | Syntactic: {syntax_complexity}")
-    #print(f"NER_TREE: {ner_tree}\n")
-    #print(f"POS_TAG: {pos_tags}\n")
+    print(f"Type-Token Ratio: {ttr:.2f} | Noun Count: {noun_count} | Syntax Score: {syntax_score}")
     print(f"Majority Complexity: {majority_complexity}\n")
     
     return majority_complexity
-    #understood
